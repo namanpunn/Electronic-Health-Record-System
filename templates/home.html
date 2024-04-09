@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="m-8 sm:m-14  bg-[#81D7F2] h-[100%] w-[100]">
+    
+
+    {% block content %}
+    <nav class="flex sm:mx-20 items-center justify-between mt-3">
+        <div class="order-first  ">
+        <h3 class="font-bold text-4xl ml-0"><a href="#">EHR</a></h3>
+        </div>
+
+        <div class="order-2 cursor-pointer  ">
+            <ul class="absolute md:flex inset-0 -translate-x-[26rem] bg-[#56ccf0] md:translate-x-0 md:bg-[#81D7F2] md:static md:gap-14 text-xl ">
+                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="index.html">Home</a></li>
+                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="doctor.html">Doctor</a></li>
+                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="individual.html">Individual</a></li>
+            </ul>
+        </div>
+        <div class="min-[700px]:flex justify-evenly order-3 hidden min-[700px]:visible md:gap-5">
+            {% if request.user.is_authenticated %}
+            <a type="submit" href="{%url 'logout'%}" class="rounded-3xl px-4 py-1 text-white bg-[#0066FF]  border-blue-700 hover:bg-blue-800">Log out</a> 
+            {%else%}
+            <a type="submit" href="{%url 'login'%}" class="rounded-3xl px-4 py-1 hover:bg-[#0066FF] hover:text-white border-2 border-blue-700">Log in</a> 
+            <a type="submit" href="{%url 'register' %}" class="rounded-3xl px-4 py-1 text-white bg-[#0066FF]  border-blue-700 hover:bg-blue-800">Sign up</a>
+            {%endif%}
+        </div>
+        
+        <div class="flex flex-col order-last cursor-pointer md:hidden ">
+            <div class="bg-black h-1 w-6 rounded-xl m-0.5 "></div>
+            <div class="bg-black h-1 w-6 rounded-xl  m-0.5"></div>
+            <div class="bg-black h-1 w-6 rounded-xl  m-0.5"></div>
+        </div>
+    </nav>
+
+    <main class="">
+        <div class="hero_section md:flex">
+            <div class="left">
+                <figure class="mt-9 pt-4 ">
+                    <img class="h-56 w-auto md:w-[40rem] md:h-auto" src="{% static 'EHR (1).png' %}" alt="EHR" width="1500px" height="1000px">
+                </figure>
+            </div>
+            <div class="right mt-12 sm:translate-x-[4.3rem] md:text-right ">
+                <div class=" ">
+                    <h3 class="font-extrabold mt-10 text-3xl sm:text-5xl right-0">Find & Search Your <br>
+                        Patient's</span> <span class="text-blue-700">Previous <br> Record.</span></h3>
+                </div>
+            <div class="mt-9">
+                <p class="text-[1rem] sm:text-[1rem]">Unlock Global Healthcare Connectivity: Seamlessly Access<br> Patient Health Records Anytime, Anywhere.</p>
+            </div>
+            <div class="w-[45vw] md:w-60 h-11 mt-9 rounded-3xl px-3 py-1 text-center pt-3 text-white bg-[#0066FF]  border-blue-700 hover:bg-blue-800 absolute right-0">
+                <a  href="{% url 'register' %}">Doctor Registration</a>
+            </div>
+            </div>
+        </div>
+    </main>
+
+
+    <section id="Hero_bar">
+        <div class="bg-blue-700 w-[100%] h-[21rem] sm:h-[8rem] mt-14 rounded-3xl text-center p-5 sm:flex sm:p-16 justify-evenly sm:items-center  " >
+                <div class="p-3">
+                    <h3 class="font-bold italic text-3xl text-white">24/7</h3>
+                    <p class="text-white text-sm">Onine Support</p>                        
+                </div>
+                <hr>
+                <div class="sm:h-16 sm:w-0.5 sm:bg-white"></div>
+                <div class="p-3">
+                    <h3 class="font-bold italic text-3xl text-white">10k+</h3>
+                    <p class="text-white text-sm">Dotor's Registered</p>
+                </div>
+                <hr>
+                <div class="sm:h-16 sm:w-0.5 sm:bg-white"></div>
+                <div class="p-3">
+                    <h3 class="font-bold italic text-3xl text-white">1B+</h3>
+                    <p class="text-white text-sm">Patient's Data</p>
+                </div>
+                <div class="p-3">
+                    <div class="relative  ">
+                    <input class="rounded-3xl text-center border border-gray-300 focus:outline-none focus:border-indigo-500 py-2 px-4 block w-full appearance-none leading-normal" type="text" placeholder="Need Help?">
+                    <button class="absolute right-0 top-0 mt-4 mr-3 ">
+                        <img class="w-3 "  src="{% static 'search-symbol.png'%}" alt="">
+                    </button>
+                    </div>
+                </div>
+        </div>
+    </section>
+    {% endblock %}
+</body>
+</html>
+
