@@ -43,3 +43,9 @@ def registerPage(request):
             messages.error(request,'An Error occured during Registration')
 
     return render(request, 'ehrapp/signup.html', {'form':form})
+
+def doctor(request):
+    return render(request,'ehrapp/doctor.html',{})
+
+def individual(request):
+    return render(request,'ehrapp/individual.html',{})
