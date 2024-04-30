@@ -3,12 +3,18 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from .models import Topic, Doctor, Individual
+from .forms import DoctorForm
+
 
 def home(request):
     return render(request, 'home.html', {})
 
 def user_login(request):
     page = login
+    context = {'page':page}
     if request.method == 'POST':
         username = request.POST.get('username').lower()
         password = request.POST.get('password')
@@ -38,14 +44,24 @@ def registerPage(request):
             user.username = user.username.lower()
             user.save()
             login(request,user)
-            return redirect('home')
+            return redirect('request')
         else:
             messages.error(request,'An Error occured during Registration')
 
     return render(request, 'ehrapp/signup.html', {'form':form})
 
-def doctor(request):
-    return render(request,'ehrapp/doctor.html',{})
+@login_required(login_url='login')
+def DoctorProfile(request, pk):
+    doctor = Doctor.objects.get(id=pk)
+    context = {'doctor': doctor}
+    return render(request, 'ehrapp/doctor.html', context)
 
-def individual(request):
-    return render(request,'ehrapp/individual.html',{})
+@login_required(login_url='login')
+def IndividualProfile(request,name):
+    individual = Individual.objects.get(name=name)
+    context = {'individual':individual}
+    return render(request,'ehrapp/individual.html',context)
+
+
+def notexist(request):
+    return render(request, 'ehrapp/notexist.html', {})
