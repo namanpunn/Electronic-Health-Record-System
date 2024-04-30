@@ -9,5 +9,5 @@ urlpatterns = [
     path('doctor/<str:pk>/', views.DoctorProfile, name='doctor'),
     path('individual/<str:name>/', views.IndividualProfile, name='individual'),
     path('individual/notexist',views.notexist,name='notexist'),
-    
+    path('search', views.search, name="search"),
 ]

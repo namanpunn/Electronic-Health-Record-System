@@ -11,17 +11,17 @@
 <body>
     <nav class="flex sm:mx-20 items-center justify-between mb-8 mt-7">
         <div class="order-first  ">
-        <h3 class="font-bold text-4xl ml-0"><a href="#">EHR</a></h3>
+        <h3 class="font-bold text-4xl ml-0"><a href="{% url 'home' %}">EHR</a></h3>
         </div>
 
         <div class="order-2 cursor-pointer  ">
             <ul class="absolute md:flex inset-0 -translate-x-[26rem] bg-[#56ccf0] md:translate-x-0 md:bg-[#81D7F2] md:static md:gap-14 text-xl ">
-                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'home'%}">Home</a></li>
-                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'doctor' pk=user.id%}">Doctor</a></li>
+                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium transition-smooth"><a href="{% url 'home'%}">Home</a></li>
+                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium transition-smooth"><a href="{% url 'doctor' pk=user.id%}">Doctor</a></li>
                 {% if user.username == True %}
-                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'individual' name=user.username|capfirst  %}">Individual</a></li>
+                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium transition-smooth"><a href="{% url 'individual' name=user.username|capfirst  %}">Individual</a></li>
                 {%else%}
-                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'notexist'%}">Individual</a></li>
+                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium transition-smooth"><a href="{% url 'notexist'%}">Individual</a></li>
                 {% endif %}
             </ul>
         </div>

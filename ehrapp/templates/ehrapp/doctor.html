@@ -14,7 +14,9 @@
                 </figure>
                 <div class="flex max-[500px]:justify-center">     
                 <figure class="  -mt-24 ml-9">
-                    <img class="  border rounded-full w-52 h-52 z-10 " src="{% static 'doc_2.jpg'%}" alt="doc_1" width="60px" height="40px">
+                    <!-- {% if request.user.username == "nainasharma" %} -->
+                    <img class="border rounded-full w-52 h-52 z-10" src="{% static 'doc_2.jpg' %}" alt="doc_2" width="60px" height="40px">
+                    <!-- {% endif %} -->
                     <figcaption class="text-center m-4 text-2xl font-bold">{{ doctor.name }} <br><span class="opacity-70 text-xl font-medium">{{ doctor.designation }} </span></figcaption>
                 </figure>
             
