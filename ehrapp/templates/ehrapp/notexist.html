@@ -8,14 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="{% static 'EHR.png'%}">
 </head>
-<body>
+<body class="bg-[#56ccf0]">
+
+    {% block content %}
     <nav class="flex sm:mx-20 items-center justify-between mb-8 mt-7">
         <div class="order-first  ">
         <h3 class="font-bold text-4xl ml-0"><a href="#">EHR</a></h3>
         </div>
 
         <div class="order-2 cursor-pointer  ">
-            <ul class="absolute md:flex inset-0 -translate-x-[26rem] bg-[#56ccf0] md:translate-x-0 md:bg-[#81D7F2] md:static md:gap-14 text-xl ">
+            <ul class="absolute md:flex inset-0 -translate-x-[26rem]  md:translate-x-0  md:static md:gap-14 text-xl ">
                 <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'home'%}">Home</a></li>
                 <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'doctor' pk=user.id%}">Doctor</a></li>
                 {% if user.username == True %}
@@ -39,7 +41,14 @@
             <div class="bg-black h-1 w-6 rounded-xl  m-0.5"></div>
             <div class="bg-black h-1 w-6 rounded-xl  m-0.5"></div>
         </div>
-    </nav> 
+    </nav> <hr>
 
+    <div class="flex flex-col items-center justify-center h-screen">
+        <h1 class="text-4xl font-bold mb-4">Individual not found</h1>
+        <p class="text-xl mb-8">The individual you are looking for does not exist.</p>
+        <a href="{% url 'home' %}" class="px-4 py-2 bg-blue-500 text-white rounded">Go back to home</a>
+      </div>
+      {% endblock %}
 </body>
 </html>
+

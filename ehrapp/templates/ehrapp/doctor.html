@@ -1,42 +1,8 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EHR</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/img/EHR.png">
-</head>
+{% include 'main.html' %}
 <body class="  max-[500px]:h-[100vh] sm:m-14 sm:mb-0 bg-[#81D7F2] h-[100%] w-[100]">
-    <nav class="flex sm:mx-20 items-center justify-between mt-3">
-        <div class="order-first  ">
-        <h3 class="font-bold text-4xl ml-0"><a href="#">EHR</a></h3>
-        </div>
-
-        <div class="order-2 cursor-pointer  ">
-            <ul class="absolute md:flex inset-0 -translate-x-[26rem] bg-[#56ccf0] md:translate-x-0 md:bg-[#81D7F2] md:static md:gap-14 text-xl ">
-                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'home'%}">Home</a></li>
-                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'doctor'%}">Doctor</a></li>
-                <li class="hover:border-b-2 hover:border-blue-700 hover:text-blue-700 hover:font-medium"><a href="{% url 'individual' %}">Individual</a></li>
-            </ul>
-        </div>
-        <div class="min-[700px]:flex justify-evenly order-3 hidden min-[700px]:visible md:gap-5">
-            {% if request.user.is_authenticated %}
-            <a type="submit" href="{%url 'logout'%}" class="rounded-3xl px-4 py-1 text-white bg-[#0066FF]  border-blue-700 hover:bg-blue-800">Log out</a> 
-            {%else%}
-            <a type="submit" href="{%url 'login'%}" class="rounded-3xl px-4 py-1 hover:bg-[#0066FF] hover:text-white border-2 border-blue-700">Log in</a> 
-            <a type="submit" href="{%url 'register' %}" class="rounded-3xl px-4 py-1 text-white bg-[#0066FF]  border-blue-700 hover:bg-blue-800">Sign up</a>
-            {%endif%}
-        </div>
-        
-        <div class="flex flex-col order-last cursor-pointer md:hidden ">
-            <div class="bg-black h-1 w-6 rounded-xl m-0.5 "></div>
-            <div class="bg-black h-1 w-6 rounded-xl  m-0.5"></div>
-            <div class="bg-black h-1 w-6 rounded-xl  m-0.5"></div>
-        </div>
-    </nav> 
     
+    {% block content%}
         </div>
 
         <main>
@@ -49,7 +15,7 @@
                 <div class="flex max-[500px]:justify-center">     
                 <figure class="  -mt-24 ml-9">
                     <img class="  border rounded-full w-52 h-52 z-10 " src="{% static 'doc_2.jpg'%}" alt="doc_1" width="60px" height="40px">
-                    <figcaption class="text-center m-4 text-2xl font-bold">Dr. Naina Sharma<br><span class="opacity-70 text-xl font-medium">Gynecologist</span></figcaption>
+                    <figcaption class="text-center m-4 text-2xl font-bold">{{ doctor.name }} <br><span class="opacity-70 text-xl font-medium">{{ doctor.designation }} </span></figcaption>
                 </figure>
             
         
@@ -70,9 +36,9 @@
 
             <h3 class="font-bold p-7 pl-10 text-xl  ">Personal Details</h3>
     
-            <p class="p-3 pl-14 flex"><img src="{% static 'phone-call.png' %}" alt="" width="20px " class="mr-7">+81-6576580809</p>
-            <p class="p-3 pl-14 flex"><img src="{% static 'email.png' %}" alt="" width="20px " class="mr-7">alexy.yie@gmail.com</p>
-            <p class="p-3 pl-14 flex"><img src="{% static 'home.png' %}" alt="" width="20px " height="10px" class="mr-7">4757 california </p>
+            <p class="p-3 pl-14 flex"><img src="{% static 'phone-call.png' %}" alt="" width="20px " class="mr-7">{{ doctor.phonenumber }} </p>
+            <p class="p-3 pl-14 flex"><img src="{% static 'email.png' %}" alt="" width="20px " class="mr-7">{{ doctor.emailid }} </p>
+            <p class="p-3 pl-14 flex"><img src="{% static 'home.png' %}" alt="" width="20px " height="10px" class="mr-7">{{ doctor.address }}  </p>
         
         </div>
 
@@ -100,6 +66,5 @@
     <footer class="mt-16 float-endbottom-0 w-[100%]">
         <div class="bg-blue-700 w-full h-9"></div>
     </footer>
-    
+    {% endblock %}
 </body>
-</html>
