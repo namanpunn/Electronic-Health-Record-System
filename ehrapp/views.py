@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Topic, Doctor, Individual
 from .forms import DoctorForm
-
+from django.db.models import Q
 
 def home(request):
     return render(request, 'home.html', {})
@@ -65,3 +65,12 @@ def IndividualProfile(request,name):
 
 def notexist(request):
     return render(request, 'ehrapp/notexist.html', {})
+
+def search(request):
+    query = request.GET.get('Individual')
+    if query:
+        allPosts = Individual.objects.filter(title__icontains=query)
+    else:
+        allPosts = []  # Empty queryset if no query provided
+    context = {'allPosts': allPosts}
+    return render(request, 'ehrapp/search.html', context)
